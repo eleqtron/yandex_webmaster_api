@@ -1,0 +1,40 @@
+<h1>Listing articles</h1>
+
+<% if flash[:yandex_success] %>
+  <%= flash[:yandex_success] %>
+<% end %>
+
+<% if flash[:yandex_error] %>
+  <%= flash[:yandex_error] %>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Content</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @articles.each do |article| %>
+      <tr>
+        <td><%= article.title %></td>
+        <td><%= article.content %></td>
+        <td><%= link_to 'Show', article %></td>
+        <td><%= link_to 'Edit', edit_article_path(article) %></td>
+        <td><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Send to Yandex Original Texts', send_to_yandex_article_path(article), method: :post, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Article', new_article_path %>
+<br >
+<%= link_to 'Получить/Обновить токен Yandex', "https://oauth.yandex.ru/authorize?response_type=code&client_id=#{Settings.yandex.client_id}&state=#{Settings.yandex.state}", target: '_blank' %>

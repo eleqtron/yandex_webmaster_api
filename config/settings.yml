@@ -1,0 +1,18 @@
+defaults: &defaults
+  yandex:
+    app_host: '99999999'
+    client_id: '41346a4b7ad5c80468dc804665f29b58162f65'
+    client_password: 'ac433b06a3a78783fe44d4548eccd37a'
+    state: '6c11bbc6acce8f1e6163df44dfe1bc83'
+
+development:
+  <<: *defaults
+
+production:
+  <<: *defaults
+
+staging:
+  <<: *defaults
+
+test:
+  <<: *defaults
